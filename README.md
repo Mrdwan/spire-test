@@ -15,5 +15,7 @@ there is a room for imporvements but for the sake of time and because this is a 
 - .env file to store database credentials
 - QueryBuilder class for DB queries
 - Extracting the View file into smaller components 
+- Making Router and create routes but the app is to small so not needed
+- Making controller instead of plain php file but app is too small for that
 
 
