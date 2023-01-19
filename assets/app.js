@@ -25,26 +25,26 @@ function validateAddress(event) {
         switch (pair[0]) {
             case 'address_line_1':
                 addresses.original.address1 = pair[1]
-                break;
+                break
             case 'address_line_2':
                 addresses.original.address2 = pair[1]
-                break;
+                break
             case 'city':
                 addresses.original.city = pair[1]
-                break;
+                break
             case 'state':
                 addresses.original.state = pair[1]
-                break;
+                break
             case 'zip_code':
                 addresses.original.zipCode = pair[1]
-                break;
+                break
         }
     }
 
     fetch(`https://secure.shippingapis.com/ShippingAPI.dll?API=Verify&XML=<AddressValidateRequest USERID="998MRDWA4141"><Revision>1</Revision><Address><Address1>${addresses.original.address1}</Address1><Address2>${addresses.original.address2}</Address2><City>${addresses.original.city}</City><State>${addresses.original.state}</State><Zip5>${addresses.original.zipCode}</Zip5><Zip4/></Address></AddressValidateRequest>`)
         .then(response => response.text())
         .then(data => {
-            const response = parseXmlToJson(data);
+            const response = parseXmlToJson(data)
             const address = response.AddressValidateResponse
 
             if (address?.Address?.Error) {
@@ -63,7 +63,7 @@ function validateAddress(event) {
                     <div>City: ${addresses.original.city}</div>
                     <div>State: ${addresses.original.state}</div>
                     <div>Zip Code: ${addresses.original.zipCode}</div>
-                `;
+                `
 
                 addressesText.standardized = `
                     <div>Address Line 1: ${addresses.standardized.address1}</div>
@@ -71,7 +71,7 @@ function validateAddress(event) {
                     <div>City: ${addresses.standardized.city}</div>
                     <div>State: ${addresses.standardized.state}</div>
                     <div>Zip Code: ${addresses.standardized.zipCode}</div>
-                `;
+                `
                 showAddressSavingForm(addressesText.original, addressesText.standardized)
             }
 
@@ -79,15 +79,14 @@ function validateAddress(event) {
         })
         .catch(error => {
             showError('something went wrong!')
-            console.log(error);
             new bootstrap.Modal('#modal').show()
         })
 }
 
 function save() {
-    let formData = new FormData();
+    let formData = new FormData()
     for(const key in addresses[selectedAddressType]) {
-        formData.append(key, addresses[selectedAddressType][key]);
+        formData.append(key, addresses[selectedAddressType][key])
     }
 
     fetch('post.php', {
@@ -96,20 +95,19 @@ function save() {
     }).then(response => response.text())
     .then(response => showSuccessAlert(response))
     .catch(error => {
-        console.log(error);
         showError('something went wrong!')
     })
 }
 
 function parseXmlToJson(xml) {
-    const json = {};
+    const json = {}
     for (const res of xml.matchAll(/(?:<(\w*)(?:\s[^>]*)*>)((?:(?!<\1).)*)(?:<\/\1>)|<(\w*)(?:\s*)*\/>/gm)) {
-        const key = res[1] || res[3];
-        const value = res[2] && parseXmlToJson(res[2]);
-        json[key] = ((value && Object.keys(value).length) ? value : res[2]) || null;
+        const key = res[1] || res[3]
+        const value = res[2] && parseXmlToJson(res[2])
+        json[key] = ((value && Object.keys(value).length) ? value : res[2]) || null
     }
 
-    return json;
+    return json
 }
 
 function hideAddressSavingForm() {
@@ -117,6 +115,7 @@ function hideAddressSavingForm() {
 }
 
 function showAddressSavingForm(originalAddress, standardizedAddress) {
+    showSaveButton()
     document.getElementById('original').innerHTML = originalAddress
     document.getElementById('standardized').innerHTML = standardizedAddress
 
@@ -142,15 +141,24 @@ function hideAlerts() {
     document.getElementById('success-alert').classList.add('d-none')
 }
 
+function showSaveButton() {
+    document.getElementById('modal-footer').classList.remove('d-none')
+}
+
+function hideSaveButton() {
+    document.getElementById('modal-footer').classList.add('d-none')
+}
+
 // on modal close -> reset it
 document.getElementById('modal').addEventListener('hidden.bs.modal', function () {
     hideAddressSavingForm()
-    hideAlerts();
-});
+    hideAlerts()
+    hideSaveButton()
+})
 
 // set selected address type
 document.querySelectorAll('button[data-bs-toggle="pill"]').forEach(element => {
     element.addEventListener('shown.bs.tab', event => {
-        selectedAddressType = event.target.dataset.type;
+        selectedAddressType = event.target.dataset.type
     })
-});
+})

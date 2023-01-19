@@ -75,7 +75,7 @@
             <div class="alert alert-danger mt-3 d-none" id="error-alert"></div>
             <div class="alert alert-success mt-3 d-none" id="success-alert"></div>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer d-none" id="modal-footer">
             <button type="button" class="btn btn-primary" onclick="save()">Save</button>
         </div>
         </div>
