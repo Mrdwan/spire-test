@@ -60,27 +60,19 @@
                 <span>Which Address format do you want to save?</span>
                 <ul class="nav nav-pills mb-3" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="original-tab" data-bs-toggle="pill" data-bs-target="#original" type="button" role="tab" aria-controls="original" aria-selected="true">Original</button>
+                        <button class="nav-link active" id="original-tab" data-bs-toggle="pill" data-bs-target="#original" type="button" role="tab" aria-controls="original" aria-selected="true" data-type="original">
+                            Original
+                        </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="standardized-tab" data-bs-toggle="pill" data-bs-target="#standardized" type="button" role="tab" aria-controls="standardized" aria-selected="false">Standardized (USPS)</button>
+                        <button class="nav-link" id="standardized-tab" data-bs-toggle="pill" data-bs-target="#standardized" type="button" role="tab" aria-controls="standardized" aria-selected="false" data-type="standardized">
+                            Standardized (USPS)
+                        </button>
                     </li>
                 </ul>
                 <div class="tab-content border p-2">
-                    <div class="tab-pane fade show active" id="original" role="tabpanel" aria-labelledby="original-tab" tabindex="0">
-                        <div>Address Line 1: <span></span></div>
-                        <div>Address Line 2: <span></span></div>
-                        <div>City: <span></span></div>
-                        <div>State: <span></span></div>
-                        <div>Zip Code: <span></span></div>
-                    </div>
-                    <div class="tab-pane fade" id="standardized" role="tabpanel" aria-labelledby="standardized-tab" tabindex="0">
-                        <div>Address Line 1: <span></span></div>
-                        <div>Address Line 2: <span></span></div>
-                        <div>City: <span></span></div>
-                        <div>State: <span></span></div>
-                        <div>Zip Code: <span></span></div>
-                    </div>
+                    <div class="tab-pane fade show active" id="original" role="tabpanel" aria-labelledby="original-tab" tabindex="0"></div>
+                    <div class="tab-pane fade" id="standardized" role="tabpanel" aria-labelledby="standardized-tab" tabindex="0"></div>
                 </div>
             </div>
 
@@ -88,7 +80,7 @@
             <div class="alert alert-success mt-3 d-none" id="success-alert"></div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-primary" onclick="save()">Save</button>
         </div>
         </div>
     </div>
