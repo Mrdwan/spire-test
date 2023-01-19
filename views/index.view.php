@@ -10,23 +10,23 @@
 </head>
 <body class="bg-secondary-light d-flex align-items-center justify-content-center vh-100">
     <div class="bg-light p-4 border rounded shadow-sm">
-        <h4>Adress Validator</h4>
-        <h5>validate/Standardizes addresses using USPS</ht>        
+        <h1>Adress Validator</h1>
+        <h2>validate/Standardizes addresses using USPS</h2>
         <hr>
         <form action="" method="post" onsubmit="validateAddress(event)">
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label for="address_1" class="form-label">Address Line 1</label>
                 <input type="text" class="form-control" name="address_line_1" id="address_line_1">
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label for="address_2" class="form-label">Address Line 2</label>
                 <input type="text" class="form-control" name="address_line_2" id="address_line_2">
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label for="city" class="form-label">City</label>
                 <input type="text" class="form-control" name="city" id="city">
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label for="state" class="form-label">State</label>
                 <select class="form-control" name="state" id="state">
                     <option value="" class="d-none">(Select)</option>
@@ -41,7 +41,7 @@
             </div>
             <div class="form-group text-center pt-4">
                 <button type="submit" class="btn btn-primary shadow-sm">
-                    VALIDATE
+                    Validate
                 </button>
             </div>
         </form>
@@ -58,18 +58,14 @@
         <div class="modal-body">
             <div class="d-none" id="save-address">
                 <span>Which Address format do you want to save?</span>
-                <ul class="nav nav-pills mb-3" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="original-tab" data-bs-toggle="pill" data-bs-target="#original" type="button" role="tab" aria-controls="original" aria-selected="true" data-type="original">
-                            Original
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="standardized-tab" data-bs-toggle="pill" data-bs-target="#standardized" type="button" role="tab" aria-controls="standardized" aria-selected="false" data-type="standardized">
-                            Standardized (USPS)
-                        </button>
-                    </li>
-                </ul>
+                <div class="btn-group nav-pills mb-3" role="tablist">
+                    <button type="button" class="btn btn-primary active" id="original-tab" data-bs-toggle="pill" data-bs-target="#original" type="button" role="tab" aria-controls="original" aria-selected="true" data-type="original">
+                        Original
+                    </button>
+                    <button type="button" class="btn btn-primary" id="standardized-tab" data-bs-toggle="pill" data-bs-target="#standardized" type="button" role="tab" aria-controls="standardized" aria-selected="false" data-type="standardized">
+                        Standardized (USPS)
+                    </button>
+                </div>
                 <div class="tab-content border p-2">
                     <div class="tab-pane fade show active" id="original" role="tabpanel" aria-labelledby="original-tab" tabindex="0"></div>
                     <div class="tab-pane fade" id="standardized" role="tabpanel" aria-labelledby="standardized-tab" tabindex="0"></div>
