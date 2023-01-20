@@ -51,8 +51,8 @@ function validateAddress(event) {
                 const error = address.Address.Error.Description
                 showError(error)
             } else {
-                addresses.standardized.address1 = address.Address1
-                addresses.standardized.address2 = address.Address2
+                addresses.standardized.address1 = address.Address2 // switched on the api response
+                addresses.standardized.address2 = address.Address1 // switched on the api response
                 addresses.standardized.city = address.City
                 addresses.standardized.state = address.State
                 addresses.standardized.zipCode = address.Zip5
