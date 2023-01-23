@@ -150,7 +150,7 @@ function hideSaveButton() {
 }
 
 // on modal close -> reset it
-document.getElementById('modal').addEventListener('hidden.bs.modal', function () {
+document.getElementById('modal').addEventListener('hidden.bs.modal', () => {
     hideAddressSavingForm()
     hideAlerts()
     hideSaveButton()
@@ -158,7 +158,26 @@ document.getElementById('modal').addEventListener('hidden.bs.modal', function ()
 
 // set selected address type
 document.querySelectorAll('button[data-bs-toggle="pill"]').forEach(element => {
-    element.addEventListener('shown.bs.tab', event => {
-        selectedAddressType = event.target.dataset.type
+    element.addEventListener('shown.bs.tab', event => selectedAddressType = event.target.dataset.type)
+})
+
+// navbar
+document.querySelectorAll('a[data-page]').forEach(element => {
+    element.addEventListener('click', event => {
+        const selectedPage = event.target.dataset.page
+
+        if (selectedPage === 'saved-addresses') {
+            fetch('get-addresses.php')
+            .then(response => response.text())
+            .then(response => document.getElementById('saved-addresses-content').innerHTML = response)
+            .catch(error => alert('something went wrong!'))
+        } else {
+            document.getElementById('save-address-form').reset()
+        }
+
+        document.querySelectorAll('.page-container').forEach(container => {
+            container.classList.add('d-none')
+        })
+        document.getElementById(selectedPage).classList.remove('d-none')
     })
 })

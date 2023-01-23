@@ -8,12 +8,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/app.css">
 </head>
-<body class="bg-secondary-light d-flex align-items-center justify-content-center vh-100">
-    <div class="bg-light p-4 border rounded shadow-sm">
-        <h1>Adress Validator</h1>
+<body class="bg-secondary-light d-flex flex-column align-items-center justify-content-center vh-100">
+    <nav class="bg-body-tertiary mb-4 w-50 pl-4 pr-4">
+        <nav class="nav justify-content-around">
+            <a class="nav-link active" aria-current="validator" data-page="validator" href="#">
+                Address Validator
+            </a>
+            <a class="nav-link" aria-current="Saved addresses" data-page="saved-addresses" href="#">
+                Saved Addresses
+            </a>
+        </nav>
+    </nav>
+
+    <div class="bg-body-tertiary p-4 border rounded shadow-sm page-container" id="validator">
+        <h1>Address Validator</h1>
         <h2>validate/Standardizes addresses using USPS</h2>
         <hr>
-        <form action="" method="post" onsubmit="validateAddress(event)">
+        <form action="" method="post" onsubmit="validateAddress(event)" id="save-address-form">
             <div class="form-group mb-3">
                 <label for="address_1" class="form-label">Address Line 1</label>
                 <input type="text" class="form-control" name="address_line_1" id="address_line_1">
@@ -93,6 +104,23 @@
                 </button>
             </div>
         </form>
+    </div>
+
+    <div class="container d-none page-container" id="saved-addresses">
+        <div class="row">
+            <div class="col">
+                <table class="table table-bordered bg-body-tertiary">
+                    <thead>
+                        <th>Address 1</th>
+                        <th>Address 2</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Zip code</th>
+                    </thead>
+                    <tbody id="saved-addresses-content"></tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <!-- Modal -->
