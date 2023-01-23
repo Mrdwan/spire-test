@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="assets/app.css">
 </head>
 <body class="bg-secondary-light d-flex flex-column align-items-center justify-content-center vh-100">
-    <nav class="bg-body-tertiary mb-4 w-50 pl-4 pr-4">
+    <nav class="bg-body-tertiary mb-4 w-50 p-2 rounded">
         <nav class="nav justify-content-around">
             <a class="nav-link active" aria-current="validator" data-page="validator" href="#">
                 Address Validator

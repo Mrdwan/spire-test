@@ -2,10 +2,6 @@ body {
     color: #666;
 }
 
-.bg-secondary-light {
-    background-color: #e3e3e3;
-}
-
 h1 {
     color: #555;
 }
@@ -40,4 +36,17 @@ label {
     background-color: #e1eaf3;
     color: #366fc9;
     border-color: #e1eaf3;
+}
+
+.bg-secondary-light {
+    background-color: #e3e3e3;
+}
+
+.nav-link {
+    color: #555;
+    font-weight: 500;
+}
+
+.nav-link.active {
+    color: #366fc9;
 }

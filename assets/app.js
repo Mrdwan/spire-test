@@ -164,7 +164,11 @@ document.querySelectorAll('button[data-bs-toggle="pill"]').forEach(element => {
 // navbar
 document.querySelectorAll('a[data-page]').forEach(element => {
     element.addEventListener('click', event => {
+        event.preventDefault()
         const selectedPage = event.target.dataset.page
+
+        event.target.classList.add('active')
+        document.querySelectorAll('a[data-page]').forEach(el => el.classList.remove('active'))
 
         if (selectedPage === 'saved-addresses') {
             fetch('get-addresses.php')
